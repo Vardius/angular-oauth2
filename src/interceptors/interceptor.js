@@ -41,7 +41,7 @@ export function interceptor($q, $injector, $rootScope) {
             let OAuthToken = $injector.get('OAuthToken');
 
             if (401 === rejection.status &&
-                (rejection.data && 'invalid_token' === rejection.data.error) ||
+                (rejection.data && ('invalid_token' === rejection.data.error || 'invalid_grant' === rejection.data.error)) ||
                 (rejection.headers('www-authenticate') && 0 === rejection.headers('www-authenticate').indexOf('Bearer'))
             ) {
                 let deferred = $q.defer();
