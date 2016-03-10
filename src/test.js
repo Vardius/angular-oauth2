@@ -1,11 +1,12 @@
 /**
- * This file is part of the angular-repository package.
+ * This file is part of the angular-oauth2 package.
  *
  * (c) Rafał Lorenz <vardius@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 import 'angular';
 import 'angular-mocks/angular-mocks';
 
