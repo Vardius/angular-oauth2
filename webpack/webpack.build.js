@@ -16,7 +16,7 @@ module.exports = {
     },
     externals: {
         'angular': 'angular',
-        'query-string': 'query-string'
+        'stringify': 'query-string'
     },
     plugins: [
         new webpack.ProvidePlugin({_: 'lodash'}),

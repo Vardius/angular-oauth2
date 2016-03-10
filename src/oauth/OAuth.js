@@ -7,6 +7,8 @@
  * file that was distributed with this source code.
  */
 
+import {stringify} from "query-string";
+
 export class OAuth {
 
     /**
@@ -115,7 +117,7 @@ export class OAuth {
         data = angular.extend({
             client_id: this.config.clientId,
             grant_type: 'refresh_token',
-            refresh_token: this.OAuthToken.getRefreshToken(),
+            refresh_token: this.OAuthToken.getRefreshToken()
         }, data);
 
         if (null !== this.config.clientSecret) {
