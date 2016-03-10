@@ -51,13 +51,13 @@ export function interceptor($q, $injector, $rootScope) {
                     $http(rejection.config).then((response) => {
                             deferred.resolve(response);
                         }, () => {
-                            $rootScope.$emit('oauth:error', rejection);
+                            $rootScope.$emit('voauth:error', rejection);
 
                             deferred.reject(rejection);
                         }
                     );
                 }, function () {
-                    $rootScope.$emit('oauth:error', rejection);
+                    $rootScope.$emit('voauth:error', rejection);
 
                     deferred.reject(rejection);
                 });
@@ -67,7 +67,7 @@ export function interceptor($q, $injector, $rootScope) {
 
             OAuthToken.removeToken();
 
-            $rootScope.$emit('oauth:error', rejection);
+            $rootScope.$emit('voauth:error', rejection);
 
             return $q.reject(rejection);
         }
