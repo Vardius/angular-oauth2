@@ -4,7 +4,7 @@ var webpack = require('webpack');
 module.exports = {
     entry: './tests/app.js',
     output: {
-        filename: 'angular-repository.js',
+        filename: 'angular-oauth2.js',
         path: 'tmp'
     },
     resolve: {

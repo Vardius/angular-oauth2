@@ -4,7 +4,7 @@ var webpack = require('webpack');
 module.exports = {
     entry: './src/app.js',
     output: {
-        filename: 'angular-symfony-acl.min.js',
+        filename: 'angular-oauth2.min.js',
         path: 'dist'
     },
     resolve: {
