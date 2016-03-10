@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  */
 
-import {stringify} from "query-string";
+//import {stringify} from "query-string";
 
 export class OAuth {
 
