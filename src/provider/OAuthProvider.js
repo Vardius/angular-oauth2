@@ -15,6 +15,7 @@ export class OAuthProvider {
      * Inject dependencies
      */
     constructor() {
+        this.$get.$inject = ['$http', 'OAuthToken'];
         this.config = {
             baseUrl: null,
             clientId: null,
@@ -56,4 +57,3 @@ export class OAuthProvider {
     }
 }
 
-OAuthProvider.$get.$inject = ['$http', 'OAuthToken'];
