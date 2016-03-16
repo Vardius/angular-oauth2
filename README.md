@@ -25,10 +25,13 @@ angular.module('app', ['vOAuth2']);
 
 ## Catch oauth errors
 
+Remember to remove token
+
 ```javascript
 angular.module('myApp', ['vOAuth2'])
-  .run(['$rootScope', '$window', function($rootScope, $window) {
+  .run(['$rootScope', '$window', 'OAuthToken', function($rootScope, $window, OAuthToken) {
     $rootScope.$on('voauth:error', function(event, rejection) {
+      OAuthToken.removeToken();
       return $window.location.href = '/login?error_reason=' + rejection.data.error;
     });
   }]);

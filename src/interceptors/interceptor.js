@@ -65,8 +65,6 @@ export function interceptor($q, $injector, $rootScope) {
                 return deferred.promise;
             }
 
-            OAuthToken.removeToken();
-
             $rootScope.$emit('voauth:error', rejection);
 
             return $q.reject(rejection);
