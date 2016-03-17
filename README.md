@@ -29,10 +29,13 @@ Remember to remove token
 
 ```javascript
 angular.module('myApp', ['vOAuth2'])
-  .run(['$rootScope', '$window', 'OAuthToken', function($rootScope, $window, OAuthToken) {
-    $rootScope.$on('voauth:error', function(event, rejection) {
-      OAuthToken.removeToken();
-      return $window.location.href = '/login?error_reason=' + rejection.data.error;
-    });
-  }]);
+  .run(run);
+  
+  run.$inject = ['$rootScope', '$state'];
+  
+  function run($rootScope, $state) {
+      $rootScope.$on('voauth:error', function () {
+          $state.go('login', {}, {reload: true});
+      });
+  }
 ```
