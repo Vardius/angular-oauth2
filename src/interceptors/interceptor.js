@@ -40,6 +40,13 @@ export function interceptor($q, $injector, $rootScope) {
             let OAuth = $injector.get('OAuth');
             let OAuthToken = $injector.get('OAuthToken');
 
+            if (400 === rejection.status && rejection.data &&
+                ('invalid_request' === rejection.data.error || 'invalid_grant' === rejection.data.error)
+            ) {
+                OAuthToken.removeToken();
+                $rootScope.$emit('voauth:error', rejection);
+            }
+
             if (401 === rejection.status &&
                 (rejection.data && ('invalid_token' === rejection.data.error || 'invalid_grant' === rejection.data.error)) ||
                 (rejection.headers('www-authenticate') && 0 === rejection.headers('www-authenticate').indexOf('Bearer'))
@@ -51,12 +58,14 @@ export function interceptor($q, $injector, $rootScope) {
                     $http(rejection.config).then((response) => {
                             deferred.resolve(response);
                         }, () => {
+                            OAuthToken.removeToken();
                             $rootScope.$emit('voauth:error', rejection);
 
                             deferred.reject(rejection);
                         }
                     );
-                }, function () {
+                }, () => {
+                    OAuthToken.removeToken();
                     $rootScope.$emit('voauth:error', rejection);
 
                     deferred.reject(rejection);
@@ -64,8 +73,6 @@ export function interceptor($q, $injector, $rootScope) {
 
                 return deferred.promise;
             }
-
-            $rootScope.$emit('voauth:error', rejection);
 
             return $q.reject(rejection);
         }
