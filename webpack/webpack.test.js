@@ -5,7 +5,7 @@ module.exports = {
     entry: './tests/app.js',
     output: {
         filename: 'angular-oauth2.js',
-        path: 'tmp'
+        path: 'dist'
     },
     resolve: {
         root: __dirname,
@@ -23,7 +23,7 @@ module.exports = {
         loaders: loaders,
         postLoaders: [
             {
-                test: /^((?!\.spec\.ts).)*.ts$/,
+                test: /^((?!\.spec\.js).)*.js/,
                 exclude: /(node_modules|bower_components)/,
                 loader: 'istanbul-instrumenter'
             }

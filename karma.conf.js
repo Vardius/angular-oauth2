@@ -1,13 +1,13 @@
 'use strict';
 
 var webpackConfig = require('./webpack/webpack.test.js');
-require('phantomjs-polyfill')
+require('phantomjs-polyfill');
 webpackConfig.entry = {};
 
 module.exports = function (config) {
     config.set({
         basePath: '',
-        frameworks: ['jasmine'],
+        frameworks: ['mocha', 'jasmine', 'chai', 'sinon'],
         port: 9876,
         colors: true,
         logLevel: config.LOG_INFO,
@@ -25,7 +25,7 @@ module.exports = function (config) {
             }
         },
         preprocessors: {
-            'src/test.ts': ['webpack'],
+            'src/test.js': ['webpack', 'sourcemap'],
             'src/**/!(*.spec)+(.js)': ['coverage']
         },
         webpackMiddleware: {
@@ -34,10 +34,14 @@ module.exports = function (config) {
                 colors: true
             }
         },
-        webpack: webpackConfig,
+        webpack: {
+            module: webpackConfig.module,
+            resolve: webpackConfig.resolve
+        },
         reporters: [
             'dots',
             'spec',
+            'progress',
             'coverage'
         ],
         coverageReporter: {
