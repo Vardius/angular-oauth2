@@ -13,9 +13,6 @@ export function interceptor($q, $injector, $rootScope) {
     return {
         request: (config) => {
             config.headers = config.headers || {};
-            if (!config.headers['Content-Type']) {
-                config.headers['Content-Type'] = 'application/json; charset=UTF-8';
-            }
 
             let OAuthToken = $injector.get('OAuthToken');
             if (!config.headers.hasOwnProperty('Authorization')) {
